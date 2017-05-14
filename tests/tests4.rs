@@ -13,6 +13,15 @@ mod tests {
 
     #[test]
     fn returns_twice_of_positive_numbers() {
-        assert_eq!(4, 4);
+        let init = 4;
+        let double = times_two(init.clone());
+        assert_eq!(init * 2, double);
+    }
+
+    #[test]
+    fn returns_twice_of_negative_number() {
+        let init = -4;
+        let double = times_two(init.clone());
+        assert_eq!(init * 2, double);
     }
 }

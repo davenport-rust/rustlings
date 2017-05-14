@@ -6,25 +6,27 @@
 use std::num::ParseIntError;
 
 fn main() {
-    let mut tokens = 100;
+    let tokens = 100;
     let pretend_user_input = "8";
 
-    let cost = try!(total_cost(pretend_user_input));
+    let cost_r = total_cost(pretend_user_input);
+    cost_r.map(|x| print_value(x, tokens)).unwrap_or(())
+}
 
+pub fn print_value(cost: i32, mut tokens: i32) -> () {
     if cost > tokens {
-        println!("You can't afford that many!");
-    } else {
-        tokens -= cost;
-        println!("You now have {} tokens.", tokens);
-    }
+            println!("You can't afford that many!");
+        } else {
+            tokens -= cost;
+            println!("You now have {} tokens.", tokens);
+        }
 }
 
 pub fn total_cost(item_quantity: &str) -> Result<i32, ParseIntError> {
     let processing_fee = 1;
     let cost_per_item = 5;
-    let qty = try!(item_quantity.parse::<i32>());
-
-    Ok(qty * cost_per_item + processing_fee)
+    let qty = item_quantity.parse::<i32>();
+    qty.map(|x| x * cost_per_item + processing_fee)
 }
 
 

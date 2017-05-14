@@ -6,11 +6,16 @@
 fn main() {
     let mut list = vec![3];
 
-    let last = list.pop().unwrap();
-    println!("The last item in the list is {:?}", last);
+    print_opt("last item".to_string(), list.pop());
+    print_opt("second to last item".to_string(), list.pop());
+}
 
-    let second_to_last = list.pop().unwrap();
-    println!("The second-to-last item in the list is {:?}", second_to_last);
+
+fn print_opt(item_name: String, opt: Option<i32>) -> () {
+    match opt {
+        Some(v) => println!("The {:?} in the list is {:?}", item_name, v ),
+        None => (),
+    }
 }
 
 
